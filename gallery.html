@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galerija - Apartma Štimec</title>
+    <!-- PASTE THIS INSIDE <head> TAG -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230077b6'/><text x='50' y='70' font-family='Arial, sans-serif' font-weight='bold' font-size='60' text-anchor='middle' fill='white'>Š</text></svg>">
+    <!-- GOOGLE ANALYTICS -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PX3ZXTV3Y9"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-PX3ZXTV3Y9');
+    </script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #f8f9fa; font-family: 'Segoe UI', sans-serif; }
+        .text-blue { color: #0077b6; }
+        
+        /* Gallery Grid */
+        .gallery-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .gallery-img:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+        }
+        
+        /* --- UPDATED MODAL (POPUP) STYLES --- */
+        .modal-content {
+            background-color: transparent; /* Remove white box */
+            border: none;
+        }
+        .modal-body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0;
+        }
+        .modal-img { 
+            max-height: 85vh; /* Maximum height 85% of screen */
+            max-width: 100%;  /* Never wider than screen */
+            width: auto;      /* Maintain aspect ratio */
+            border-radius: 4px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .btn-close-custom {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background-color: white;
+            border-radius: 50%;
+            padding: 10px;
+            opacity: 0.8;
+            cursor: pointer;
+            z-index: 1050;
+        }
+        .btn-close-custom:hover { opacity: 1; }
+        
+        /* Language Switcher */
+        .lang-btn { cursor: pointer; font-weight: bold; margin: 0 5px; opacity: 0.7; }
+        .lang-btn:hover, .lang-btn.active { opacity: 1; text-decoration: underline; color: #0077b6; }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-blue" href="index.html">APARTMA ŠTIMEC</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="index.html">
+                        <span data-lang="sl">Nazaj domov</span><span data-lang="en" class="d-none">Back Home</span>
+                        <span data-lang="de" class="d-none">Zurück</span><span data-lang="it" class="d-none">Indietro</span>
+                    </a></li>
+                    
+                    <li class="nav-item ms-3 border-start ps-3">
+                        <span class="lang-btn active" onclick="switchLanguage('sl')">SLO</span>
+                        <span class="lang-btn" onclick="switchLanguage('en')">ENG</span>
+                        <span class="lang-btn" onclick="switchLanguage('de')">DEU</span>
+                        <span class="lang-btn" onclick="switchLanguage('it')">ITA</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- GALLERY SECTION -->
+    <div class="container py-5">
+        <h1 class="text-center text-blue mb-4">
+            <span data-lang="sl">Galerija slik</span><span data-lang="en" class="d-none">Photo Gallery</span>
+            <span data-lang="de" class="d-none">Fotogalerie</span><span data-lang="it" class="d-none">Galleria fotografica</span>
+        </h1>
+        
+        <div class="row g-4">
+            <!-- Image 1: Balcony -->
+            <div class="col-md-4 col-sm-6">
+                <img src="img/balkon.jpg" class="gallery-img" onclick="openModal(this)" alt="Balkon">
+            </div>
+            <!-- Image 2: House -->
+            <div class="col-md-4 col-sm-6">
+                <img src="img/hisa1.jpg" class="gallery-img" onclick="openModal(this)" alt="Hiša">
+            </div>
+            <!-- Image 3: Living Room -->
+            <div class="col-md-4 col-sm-6">
+                <img src="img/dnevna1.jpg" class="gallery-img" onclick="openModal(this)" alt="Dnevna soba">
+            </div>
+            <!-- Image 4: Kitchen -->
+            <div class="col-md-4 col-sm-6">
+                <img src="img/kuhinja.jpg" class="gallery-img" onclick="openModal(this)" alt="Kuhinja">
+            </div>
+            <!-- Image 5: Bedroom 1 -->
+            <div class="col-md-4 col-sm-6">
+                <img src="img/soba1.jpg" class="gallery-img" onclick="openModal(this)" alt="Spalnica 1">
+            </div>
+            <!-- Image 6: Bedroom 2 -->
+            <div class="col-md-4 col-sm-6">
+                <img src="img/soba2.jpg" class="gallery-img" onclick="openModal(this)" alt="Spalnica 2">
+            </div>
+            <!-- Image 7: Bathroom -->
+            <div class="col-md-4 col-sm-6">
+                <img src="img/kopalnica.jpg" class="gallery-img" onclick="openModal(this)" alt="Kopalnica">
+            </div>
+            <!-- Image 8: Floor Plan -->
+            <div class="col-md-4 col-sm-6">
+                <img src="img/tloris.png" class="gallery-img" onclick="openModal(this)" alt="Tloris">
+            </div>
+        </div>
+    </div>
+
+    <!-- IMAGE POPUP MODAL -->
+    <div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+                <div class="position-relative">
+                    <!-- Close Button -->
+                    <button type="button" class="btn-close btn-close-custom" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <!-- Image -->
+                    <div class="modal-body">
+                        <img src="" id="modalImage" class="modal-img">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="text-center py-4 text-muted bg-light border-top">
+        <small>&copy; 2024 Apartma Štimec Izola.</small>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Open Modal Logic
+        var myModal = new bootstrap.Modal(document.getElementById('imageModal'));
+        var modalImg = document.getElementById('modalImage');
+
+        function openModal(imgElement) {
+            modalImg.src = imgElement.src;
+            myModal.show();
+        }
+
+        // Language Switcher Logic
+        function switchLanguage(lang) {
+            document.querySelectorAll('[data-lang]').forEach(el => {
+                if (el.getAttribute('data-lang') === lang) {
+                    el.classList.remove('d-none');
+                } else {
+                    el.classList.add('d-none');
+                }
+            });
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+        }
+    </script>
+</body>
+</html>
