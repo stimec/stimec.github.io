@@ -425,6 +425,10 @@
                 </div>
                 <div class="col-lg-7">
                     <form action="https://formspree.io/f/mqarrvjw" method="POST" class="p-4 bg-secondary bg-opacity-25 rounded">
+                            
+                            <!-- SPAM PROTECTION (Honeypot field) -->
+                            <input type="text" name="_gotcha" style="display:none" />
+
                         <div class="row">
                             <div class="col-md-6 mb-3"><label>Name</label><input type="text" name="name" class="form-control" required></div>
                             <div class="col-md-6 mb-3"><label>Email</label><input type="email" name="email" class="form-control" required></div>
