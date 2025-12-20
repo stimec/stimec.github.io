@@ -485,39 +485,49 @@
         </div>
     </section>
 
-    <!-- CONTACT FORM & INFO -->
-    <section id="contact" class="py-5 bg-dark text-white">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-5 mb-5 mb-lg-0">
-                    <h3 class="mb-4">Kontakt</h3>
-                    <p><i class="bi bi-geo-alt me-2"></i> Senčna ulica 8, 6311 Izola, Slovenia</p>
-                    <p><i class="bi bi-telephone me-2"></i> <a href="tel:+38668937322" class="text-white text-decoration-none">+386 (0)68 937 322</a></p>
-                    <p><i class="bi bi-envelope me-2"></i> <a href="mailto:stimec@gmail.com" class="text-white text-decoration-none">stimec@gmail.com</a></p>
-                    <p><i class="bi bi-whatsapp me-2"></i> <a href="https://wa.me/386566558899" class="text-white text-decoration-none">WhatsApp Message</a></p>
-                    <div class="mt-4">
-                        <p class="mb-2">Follow us:</p>
-                        <a href="https://www.facebook.com/ApartmaIzola" target="_blank" class="social-link"><i class="bi bi-facebook"></i></a>
-                        <a href="https://instagram.com/apartma_stimec_izola" target="_blank" class="social-link"><i class="bi bi-instagram"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-7">
-                    <form action="https://formspree.io/f/mqarrvjw" method="POST" class="p-4 bg-secondary bg-opacity-25 rounded">
-                            
-                            <!-- SPAM PROTECTION (Honeypot field) -->
-                            <input type="text" name="_gotcha" style="display:none" />
+<!-- CONTACT FORM & INFO -->
+<section id="contact" class="py-5 bg-dark text-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5 mb-5 mb-lg-0">
+                <h3 class="mb-4">Kontakt</h3>
+                <p><i class="bi bi-geo-alt me-2"></i> Senčna ulica 8, 6311 Izola, Slovenia</p>
+                
+                <!-- Phone -->
+                <p><i class="bi bi-telephone me-2"></i> <a href="tel:+38668937322" class="text-white text-decoration-none">+386 (0)68 937 322</a></p>
+                
+                <!-- Email -->
+                <p><i class="bi bi-envelope me-2"></i> <a href="mailto:stimec@gmail.com" class="text-white text-decoration-none">stimec@gmail.com</a></p>
+                
+                <!-- WhatsApp (Fixed Number) -->
+                <p><i class="bi bi-whatsapp me-2"></i> <a href="https://wa.me/38668937322" target="_blank" class="text-white text-decoration-none">WhatsApp Message</a></p>
+                
+                <!-- Viber (New) -->
+                <p><i class="bi bi-chat-dots me-2"></i> <a href="viber://chat?number=%2B38668937322" class="text-white text-decoration-none">Viber Message</a></p>
 
-                        <div class="row">
-                            <div class="col-md-6 mb-3"><label>Name</label><input type="text" name="name" class="form-control" required></div>
-                            <div class="col-md-6 mb-3"><label>Email</label><input type="email" name="email" class="form-control" required></div>
-                        </div>
-                        <div class="mb-3"><label>Message / Sporočilo</label><textarea name="message" class="form-control" rows="3"></textarea></div>
-                        <button type="submit" class="btn btn-primary w-100">SEND / POŠLJI</button>
-                    </form>
+                <div class="mt-4">
+                    <p class="mb-2">Follow us:</p>
+                    <a href="https://www.facebook.com/ApartmaIzola" target="_blank" class="social-link"><i class="bi bi-facebook"></i></a>
+                    <a href="https://instagram.com/apartma_stimec_izola" target="_blank" class="social-link"><i class="bi bi-instagram"></i></a>
                 </div>
             </div>
+            <div class="col-lg-7">
+                <form action="https://formspree.io/f/mqarrvjw" method="POST" class="p-4 bg-secondary bg-opacity-25 rounded">
+                        
+                        <!-- SPAM PROTECTION (Honeypot field) -->
+                        <input type="text" name="_gotcha" style="display:none" />
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3"><label>Name</label><input type="text" name="name" class="form-control" required></div>
+                        <div class="col-md-6 mb-3"><label>Email</label><input type="email" name="email" class="form-control" required></div>
+                    </div>
+                    <div class="mb-3"><label>Message / Sporočilo</label><textarea name="message" class="form-control" rows="3"></textarea></div>
+                    <button type="submit" class="btn btn-primary w-100">SEND / POŠLJI</button>
+                </form>
+            </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- Footer -->
     <footer class="text-center py-4 text-muted bg-white border-top">
