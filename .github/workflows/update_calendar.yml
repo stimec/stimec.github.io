@@ -2,11 +2,11 @@ name: Sync Booking Calendar
 
 on:
   schedule:
-    - cron: '0 */6 * * *' # Runs every 6 hours automatically
-  workflow_dispatch:      # Allows you to click "Run" manually to test it
+    - cron: '0 */6 * * *' # Runs every 6 hours
+  workflow_dispatch:      # Allows manual trigger
 
 permissions:
-  contents: write         # CRITICAL: Allows the bot to save availability.json
+  contents: write
 
 jobs:
   update-calendar:
@@ -19,10 +19,14 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.x'
+          python-version: '3.10' # Pinned to 3.10 for better stability
 
       - name: Install dependencies
-        run: pip install ics "tatsu==4.4.0"
+        run: |
+          pip install --upgrade pip
+          # We force tatsu 4.4.0 first because ics 0.7.2 breaks with tatsu 5.x
+          pip install "tatsu==4.4.0"
+          pip install ics
 
       - name: Download and Convert iCal to JSON
         run: |
@@ -30,7 +34,6 @@ jobs:
           import urllib.request
           from ics import Calendar
           import json
-          import os
           
           # --- YOUR BOOKING.COM LINK ---
           ical_url = 'https://ical.booking.com/v1/export?t=1c49463c-83f6-42f1-a0cb-e80a8812e463'
@@ -38,8 +41,7 @@ jobs:
 
           try:
               print('Downloading calendar...')
-              # We must use a User-Agent, otherwise Booking.com blocks the download
-              req = urllib.request.Request(ical_url, headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'})
+              req = urllib.request.Request(ical_url, headers={'User-Agent': 'Mozilla/5.0'})
               
               with urllib.request.urlopen(req) as response:
                   ical_string = response.read().decode('utf-8')
@@ -49,7 +51,6 @@ jobs:
               formatted_events = []
 
               for e in c.events:
-                  # Extract dates and format for FullCalendar
                   formatted_events.append({
                       'title': 'Booked',
                       'start': e.begin.format('YYYY-MM-DD'),
@@ -58,7 +59,6 @@ jobs:
                       'color': '#dc3545'
                   })
 
-              # Save the data to availability.json
               with open('availability.json', 'w') as f:
                   json.dump(formatted_events, f)
               
@@ -74,5 +74,4 @@ jobs:
           git config user.name "Calendar Bot"
           git config user.email "actions@github.com"
           git add availability.json
-          # Check if there are changes before committing to avoid empty commit errors
           git diff --quiet && git diff --staged --quiet || (git commit -m "Update calendar data [skip ci]" && git push)
