@@ -22,7 +22,7 @@ jobs:
           python-version: '3.x'
 
       - name: Install dependencies
-        run: pip install ics rich
+        run: pip install ics "tatsu==4.4.0"
 
       - name: Download and Convert iCal to JSON
         run: |
