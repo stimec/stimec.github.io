@@ -16,17 +16,19 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      # CRITICAL FIX: Use Python 3.9
+      # Python 3.10+ removed 'collections.Mapping' which crashes the older library we need.
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.10' # Pinned to 3.10 for better stability
+          python-version: '3.9' 
 
       - name: Install dependencies
         run: |
           pip install --upgrade pip
-          # We force tatsu 4.4.0 first because ics 0.7.2 breaks with tatsu 5.x
+          # We force install the specific versions that are known to work together
           pip install "tatsu==4.4.0"
-          pip install ics
+          pip install "ics==0.7.2"
 
       - name: Download and Convert iCal to JSON
         run: |
@@ -34,6 +36,7 @@ jobs:
           import urllib.request
           from ics import Calendar
           import json
+          import os
           
           # --- YOUR BOOKING.COM LINK ---
           ical_url = 'https://ical.booking.com/v1/export?t=1c49463c-83f6-42f1-a0cb-e80a8812e463'
@@ -41,6 +44,7 @@ jobs:
 
           try:
               print('Downloading calendar...')
+              # User-Agent is required to stop Booking.com from blocking the request
               req = urllib.request.Request(ical_url, headers={'User-Agent': 'Mozilla/5.0'})
               
               with urllib.request.urlopen(req) as response:
@@ -51,6 +55,7 @@ jobs:
               formatted_events = []
 
               for e in c.events:
+                  # Extract dates and format for FullCalendar
                   formatted_events.append({
                       'title': 'Booked',
                       'start': e.begin.format('YYYY-MM-DD'),
@@ -59,6 +64,7 @@ jobs:
                       'color': '#dc3545'
                   })
 
+              # Save the data to availability.json
               with open('availability.json', 'w') as f:
                   json.dump(formatted_events, f)
               
@@ -74,4 +80,5 @@ jobs:
           git config user.name "Calendar Bot"
           git config user.email "actions@github.com"
           git add availability.json
+          # Check if there are changes before committing
           git diff --quiet && git diff --staged --quiet || (git commit -m "Update calendar data [skip ci]" && git push)
