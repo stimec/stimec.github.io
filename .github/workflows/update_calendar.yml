@@ -22,7 +22,7 @@ jobs:
           python-version: '3.x'
 
       - name: Install dependencies
-        run: pip install ics
+        run: pip install ics rich
 
       - name: Download and Convert iCal to JSON
         run: |
