@@ -77,6 +77,8 @@
         eventDisplay: 'background',
         selectable: true,
         selectOverlap: false,
+        // day numbers are <a> without href; mark them as plain text for crawlers and screen readers
+        dayCellDidMount: function (arg) { var n = arg.el.querySelector('a.fc-daygrid-day-number'); if (n) n.setAttribute('role', 'presentation'); },
         selectAllow: function (info) { var t = new Date(); t.setHours(0, 0, 0, 0); return info.start >= t; },
         select: function (info) {
           // Click or drag on free days fills the request form

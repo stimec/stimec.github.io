@@ -2,8 +2,13 @@
 """
 build.py - generates the static pages of www.stimec.eu from one template.
 
-Version: 1.5.0
+Version: 1.6.0
 Changelog:
+  1.6.0 (2026-10-15) SEO/accessibility pass: shorter titles and descriptions,
+                     og:locale/site_name/twitter tags, Apartment details and
+                     optional RNO ID in structured data, descriptive photo alt
+                     texts, smaller gallery thumbnails, mid-size hero image,
+                     RNO ID in footer (when RNO is set).
   1.5.0 (2026-10-15) Added "Arrival and house rules" card (2nd floor, self
                      check-in, parking, no pets, smoking on balcony only).
   1.4.0 (2026-10-15) Automatic dark mode (follows device setting).
@@ -39,6 +44,7 @@ EMAIL = "stimec@gmail.com"
 ADDRESS = "Senčna ulica 8, 6310 Izola"
 GEO = (45.528154, 13.650045)
 RATING = "9.1"
+RNO = ""   # RNO ID of the accommodation; shown in footer and structured data when set
 
 PRICES = {"high": 140, "mid": 115, "low": 90, "cleaning": 40,
           "taxAdult": 3.10, "taxChild": 1.55}
@@ -81,6 +87,52 @@ ARRIVAL = {
         ("bi-slash-circle", "<b>Animali non ammessi.</b> Si può fumare solo sul balcone.")]),
 }
 
+
+# Descriptive alt texts (SEO + screen readers); captions on the photos stay short
+ALT = {
+    "sl": {"hero": "Pogled z balkona apartmaja na Izolo in morje",
+           "balkon": "Balkon z mizo in pogledom na strehe Izole in morje",
+           "dnevna2": "Dnevni prostor s kavčem, mizico in izhodom na balkon",
+           "dnevna1": "Dnevni prostor z jedilno mizo in televizorjem",
+           "kuhinja": "Kuhinja z jedilnim kotom in pomivalnim strojem",
+           "soba1": "Spalnica z dvema posteljama in izhodom na balkon",
+           "izola1": "Izola iz zraka s starim mestnim jedrom in marino",
+           "tloris": "Tloris apartmaja: spalnica, dnevni prostor, kuhinja, kopalnica in dva balkona",
+           "kopalnica": "Kopalnica s kadjo in tušem",
+           "hisa1": "Hiša z zunanjim stopniščem in parkiriščem"},
+    "en": {"hero": "View from the apartment balcony over Izola to the sea",
+           "balkon": "Balcony with table and view over the roofs of Izola to the sea",
+           "dnevna2": "Living room with sofa, coffee table and balcony door",
+           "dnevna1": "Living room with dining table and TV",
+           "kuhinja": "Kitchen with dining corner and dishwasher",
+           "soba1": "Bedroom with two single beds and balcony door",
+           "izola1": "Aerial view of Izola old town and marina",
+           "tloris": "Floor plan: bedroom, living room, kitchen, bathroom and two balconies",
+           "kopalnica": "Bathroom with bathtub and shower",
+           "hisa1": "The house with outside staircase and parking"},
+    "de": {"hero": "Blick vom Balkon der Wohnung über Izola aufs Meer",
+           "balkon": "Balkon mit Tisch und Blick über die Dächer von Izola aufs Meer",
+           "dnevna2": "Wohnraum mit Sofa, Couchtisch und Balkontür",
+           "dnevna1": "Wohnraum mit Esstisch und Fernseher",
+           "kuhinja": "Küche mit Essecke und Geschirrspüler",
+           "soba1": "Schlafzimmer mit zwei Einzelbetten und Balkontür",
+           "izola1": "Luftaufnahme der Altstadt und des Hafens von Izola",
+           "tloris": "Grundriss: Schlafzimmer, Wohnraum, Küche, Bad und zwei Balkone",
+           "kopalnica": "Badezimmer mit Badewanne und Dusche",
+           "hisa1": "Das Haus mit Außentreppe und Parkplatz"},
+    "it": {"hero": "Vista dal balcone dell'appartamento su Isola e sul mare",
+           "balkon": "Balcone con tavolo e vista sui tetti di Isola e sul mare",
+           "dnevna2": "Soggiorno con divano, tavolino e porta sul balcone",
+           "dnevna1": "Soggiorno con tavolo da pranzo e TV",
+           "kuhinja": "Cucina con angolo pranzo e lavastoviglie",
+           "soba1": "Camera con due letti singoli e porta sul balcone",
+           "izola1": "Vista aerea del centro storico e del porto di Isola",
+           "tloris": "Planimetria: camera, soggiorno, cucina, bagno e due balconi",
+           "kopalnica": "Bagno con vasca e doccia",
+           "hisa1": "La casa con scala esterna e parcheggio"},
+}
+OG_LOCALE = {"sl": "sl_SI", "en": "en_GB", "de": "de_DE", "it": "it_IT"}
+
 PATH = {"sl": "/", "en": "/en/", "de": "/de/", "it": "/it/"}
 LABEL = {"sl": "SLO", "en": "ENG", "de": "DEU", "it": "ITA"}
 FC_LOCALE = {"sl": "sl", "en": "en-gb", "de": "de", "it": "it"}
@@ -96,7 +148,7 @@ HINTS = {
 
 TEXT = {
 "sl": {
-    "title": "Apartma Štimec Izola – apartma z balkonom in pogledom na morje",
+    "title": "Apartma Izola s pogledom na morje in parkiriščem | Štimec",
     "desc": "Apartma 65 m² v mirnem Jagodju nad Izolo: balkon s pogledom na morje, brezplačno parkirišče, klima in WiFi. Do plaže 700 m. Preverite proste termine.",
     "og_title": "Apartma Štimec – pogled na morje v Izoli",
     "h1": "Apartma z balkonom in pogledom na morje v Izoli",
@@ -160,8 +212,8 @@ TEXT = {
     "lb_close": "Zapri", "lb_prev": "Prejšnja", "lb_next": "Naslednja",
 },
 "en": {
-    "title": "Apartment Štimec Izola – sea-view holiday apartment with parking",
-    "desc": "65 m² holiday apartment in quiet Jagodje above Izola, Slovenia: sea-view balcony, free private parking, air conditioning and WiFi. Beach 700 m. Check availability.",
+    "title": "Sea-View Apartment in Izola, Slovenia, with Parking | Štimec",
+    "desc": "65 m² holiday apartment above Izola, Slovenia: sea-view balcony, free parking, air conditioning, WiFi. 700 m to the beach. Check free dates and prices.",
     "og_title": "Apartment Štimec – sea view in Izola, Slovenia",
     "h1": "Sea-view apartment with balcony in Izola",
     "sub": "65 m² · up to 4 guests · free parking · 700 m to the beach",
@@ -224,8 +276,8 @@ TEXT = {
     "lb_close": "Close", "lb_prev": "Previous", "lb_next": "Next",
 },
 "de": {
-    "title": "Ferienwohnung Izola mit Meerblick und Parkplatz – Apartma Štimec",
-    "desc": "Ferienwohnung mit 65 m² im ruhigen Jagodje oberhalb von Izola, Slowenien: Balkon mit Meerblick, kostenloser Privatparkplatz, Klimaanlage, WLAN. Strand 700 m.",
+    "title": "Ferienwohnung Izola mit Meerblick und Parkplatz | Štimec",
+    "desc": "Ferienwohnung (65 m²) oberhalb von Izola, Slowenien: Balkon mit Meerblick, kostenloser Parkplatz, Klimaanlage, WLAN. Strand 700 m. Freie Termine prüfen.",
     "og_title": "Apartma Štimec – Ferienwohnung mit Meerblick in Izola",
     "h1": "Ferienwohnung mit Balkon und Meerblick in Izola",
     "sub": "65 m² · bis 4 Personen · kostenloser Parkplatz · 700 m zum Strand",
@@ -288,10 +340,10 @@ TEXT = {
     "lb_close": "Schließen", "lb_prev": "Zurück", "lb_next": "Weiter",
 },
 "it": {
-    "title": "Appartamento a Isola (Izola) con vista mare e parcheggio – Štimec",
-    "desc": "Appartamento di 65 m² nella tranquilla Jagodje sopra Isola, Slovenia: balcone con vista mare, parcheggio privato gratuito, aria condizionata e WiFi. Spiaggia a 700 m.",
-    "og_title": "Appartamento Štimec – vista mare a Isola (Izola)",
-    "h1": "Appartamento con balcone e vista mare a Isola",
+    "title": "Appartamento vista mare a Isola d'Istria (Izola) | Štimec",
+    "desc": "Appartamento di 65 m² sopra Isola d'Istria (Izola), Slovenia: balcone vista mare, parcheggio gratuito, aria condizionata, WiFi. Spiaggia a 700 m.",
+    "og_title": "Appartamento Štimec – vista mare a Isola d'Istria (Izola)",
+    "h1": "Appartamento con balcone e vista mare a Isola d'Istria",
     "sub": "65 m² · fino a 4 ospiti · parcheggio gratuito · 700 m dalla spiaggia",
     "check": "Verifica disponibilità", "wa": "WhatsApp",
     "rating": "su Booking.com", "rating_lbl": "Valutazione degli ospiti",
@@ -356,6 +408,7 @@ TEXT = {
 
 def head(lang, t):
     url = SITE + PATH[lang]
+    og_alt = "\n".join(f'  <meta property="og:locale:alternate" content="{OG_LOCALE[l]}">' for l in LANGS if l != lang)
     alts = "\n".join(f'  <link rel="alternate" hreflang="{l}" href="{SITE}{PATH[l]}">' for l in LANGS)
     schema = {
         "@context": "https://schema.org",
@@ -375,6 +428,13 @@ def head(lang, t):
         "geo": {"@type": "GeoCoordinates", "latitude": GEO[0], "longitude": GEO[1]},
         "hasMap": MAPS_LINK,
         "sameAs": [BOOKING_URL, FACEBOOK, INSTAGRAM],
+        "currenciesAccepted": "EUR",
+        "paymentAccepted": "Cash, Bank transfer",
+        "containsPlace": {"@type": "Apartment", "name": "Apartma Štimec",
+                          "floorSize": {"@type": "QuantitativeValue", "value": 65, "unitCode": "MTK"},
+                          "numberOfBedrooms": 1, "numberOfBathroomsTotal": 1,
+                          "occupancy": {"@type": "QuantitativeValue", "maxValue": 4}},
+        "identifier": {"@type": "PropertyValue", "propertyID": "RNO", "value": RNO} if RNO else None,
         "amenityFeature": [{"@type": "LocationFeatureSpecification", "name": n, "value": True}
                            for n in ["Free private parking", "Sea view balcony", "Air conditioning",
                                      "Free WiFi", "Smart TV", "Dishwasher", "Washing machine"]],
@@ -399,13 +459,18 @@ def head(lang, t):
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:url" content="{url}">
+  <meta property="og:site_name" content="Apartma Štimec Izola">
+  <meta property="og:locale" content="{OG_LOCALE[lang]}">
+{og_alt}
+  <meta property="og:image:alt" content="{ALT[lang]['hero']}">
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#16324f" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#0f1b28" media="(prefers-color-scheme: dark)">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="/favicon.ico" sizes="48x48">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <link rel="preload" as="image" href="/img/balkon.webp" imagesrcset="/img/balkon-sm.webp 720w, /img/balkon.webp 1448w" imagesizes="100vw">
+  <link rel="preload" as="image" href="/img/balkon.webp" imagesrcset="/img/balkon-sm.webp 720w, /img/balkon-md.webp 1080w, /img/balkon.webp 1448w" imagesizes="100vw">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
@@ -439,7 +504,7 @@ def nav(lang, t):
         <li class="nav-item"><a class="nav-link" href="#location">{t['nav_loc']}</a></li>
         <li class="nav-item"><a class="nav-link" href="#contact">{t['nav_contact']}</a></li>
         <li class="nav-item lang-switch ms-lg-3 my-2 my-lg-0">{langs}</li>
-        <li class="nav-item ms-lg-3 d-none d-lg-block"><a class="btn btn-navy btn-sm px-3 py-2" href="#booking">{t['check']}</a></li>
+        <li class="nav-item ms-lg-3 d-none d-xl-block"><a class="btn btn-navy btn-sm px-3 py-2" href="#booking">{t['check']}</a></li>
       </ul>
     </div>
   </div>
@@ -454,8 +519,8 @@ def body(lang, t):
     hl = f"""
       <div class="col-12 col-lg-auto pe-lg-4"><div class="hl-rating"><span class="score">{RATING}</span><div><strong>{t['rating_lbl']}</strong><span>{RATING} / 10 {t['rating']}</span></div></div></div>""" + hl
     gallery = "".join(f"""
-      <button type="button" class="{cls}" data-full="/img/{f}.webp" aria-label="{t[c]}">
-        <img src="/img/{f}-sm.webp" alt="{t[c]}" loading="lazy" decoding="async"><span class="cap">{t[c]}</span></button>"""
+      <button type="button" class="{cls}" data-full="/img/{f}.webp">
+        <img src="/img/{f}-sm.webp" srcset="/img/{f}-xs.webp 400w, /img/{f}-sm.webp 720w" sizes="{'(max-width: 767px) 100vw, 50vw' if 'big' in cls else '(max-width: 767px) 50vw, 25vw'}" alt="{ALT[lang][f]}" loading="lazy" decoding="async"><span class="cap" aria-hidden="true">{t[c]}</span></button>"""
                       for f, cls, c in PHOTOS)
     rooms = "".join(f"""
       <div class="col-sm-6"><div class="room"><i class="bi {i}" aria-hidden="true"></i><h3>{h}</h3><p>{p}</p></div></div>"""
@@ -468,7 +533,7 @@ def body(lang, t):
     rules = "".join(f'<li><i class="bi {i}" aria-hidden="true"></i><span>{r}</span></li>' for i, r in t["rules"])
     dist = "".join(f"<li><span>{a}</span><b>{b}</b></li>" for a, b in t["dist"])
     num = lambda id_, label, v, mx: f"""
-            <div class="col-4"><label class="form-label" for="{id_}">{label}</label>
+            <div class="col-4 guest-col"><label class="form-label" for="{id_}">{label}</label>
               <select class="form-select" id="{id_}" name="{label}">{''.join(f'<option{" selected" if i == v else ""}>{i}</option>' for i in range(0, mx + 1))}</select></div>"""
     site_cfg = {"lang": lang, "fcLocale": FC_LOCALE[lang], "numLocale": NUM_LOCALE[lang], "gaId": GA_ID,
                 "prices": PRICES, "t": t["t"], "hints": {l: HINTS[l] for l in LANGS if l != lang}}
@@ -479,8 +544,8 @@ def body(lang, t):
 {nav(lang, t)}
 
 <header class="hero">
-  <img class="hero-img" src="/img/balkon.webp" srcset="/img/balkon-sm.webp 720w, /img/balkon.webp 1448w" sizes="100vw"
-       alt="{t['c_balcony']}" fetchpriority="high" width="1448" height="1086">
+  <img class="hero-img" src="/img/balkon.webp" srcset="/img/balkon-sm.webp 720w, /img/balkon-md.webp 1080w, /img/balkon.webp 1448w" sizes="100vw"
+       alt="{ALT[lang]['hero']}" fetchpriority="high" width="1448" height="1086">
   <div class="container">
     <h1>{t['h1']}</h1>
     <p class="hero-sub">{t['sub']}</p>
@@ -618,7 +683,7 @@ def body(lang, t):
 
 <footer>
   <div class="container d-flex flex-wrap justify-content-between gap-2">
-    <span>© {year} Apartma Štimec · {ADDRESS}</span>
+    <span>© {year} Apartma Štimec · {ADDRESS}{f" · RNO ID {RNO}" if RNO else ""}</span>
     <span><a href="{FACEBOOK}" target="_blank" rel="noopener" aria-label="Facebook"><i class="bi bi-facebook me-3"></i></a><a href="{INSTAGRAM}" target="_blank" rel="noopener" aria-label="Instagram"><i class="bi bi-instagram"></i></a></span>
   </div>
 </footer>
@@ -629,7 +694,7 @@ def body(lang, t):
   <a class="mb-book" href="#booking"><i class="bi bi-calendar3 me-1"></i>{t['mb_book']}</a>
 </div>
 
-<div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="{t['ph_eyebrow']}">
   <button type="button" class="lb-close" aria-label="{t['lb_close']}"><i class="bi bi-x-lg"></i></button>
   <button type="button" class="lb-prev" aria-label="{t['lb_prev']}"><i class="bi bi-chevron-left"></i></button>
   <img alt="">
@@ -637,7 +702,7 @@ def body(lang, t):
   <button type="button" class="lb-next" aria-label="{t['lb_next']}"><i class="bi bi-chevron-right"></i></button>
 </div>
 
-<div id="cookie-banner" role="dialog" aria-live="polite">
+<div id="cookie-banner" role="region" aria-label="Cookies">
   <p>{t['cookie']}</p>
   <button type="button" class="btn btn-navy btn-sm cb-yes">{t['cookie_yes']}</button>
   <button type="button" class="btn btn-sand btn-sm cb-no">{t['cookie_no']}</button>
