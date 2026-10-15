@@ -2,8 +2,11 @@
 """
 build.py - generates the static pages of www.stimec.eu from one template.
 
-Version: 1.1.0
+Version: 1.2.0
 Changelog:
+  1.2.0 (2026-10-15) Brighter favicon (favicon.svg/.ico, apple-touch-icon);
+                     Booking rating 9.1, no longer a link; removed
+                     "book on Booking.com" link and Booking contact tile.
   1.1.0 (2026-10-15) Gallery reduced to 9 photos (no second bedroom shot,
                      coast, harbour, beach); new gallery heading text.
   1.0.0 (2026-10-15) First version. Builds / (sl), /en/, /de/, /it/,
@@ -30,7 +33,7 @@ PHONE_SHOW = "+386 68 937 322"
 EMAIL = "stimec@gmail.com"
 ADDRESS = "Senčna ulica 8, 6310 Izola"
 GEO = (45.528154, 13.650045)
-RATING = "9.5"
+RATING = "9.1"
 
 PRICES = {"high": 140, "mid": 115, "low": 90, "cleaning": 40,
           "taxAdult": 3.10, "taxChild": 1.55}
@@ -107,7 +110,7 @@ TEXT = {
     "free": "prosto", "booked": "zasedeno",
     "f_arr": "Prihod", "f_dep": "Odhod", "f_adults": "Odrasli", "f_kids": "Otroci 7–17", "f_small": "Otroci do 7",
     "f_name": "Ime in priimek", "f_email": "E-pošta", "f_phone": "Telefon (neobvezno)", "f_msg": "Sporočilo (neobvezno)",
-    "f_send": "Pošlji povpraševanje", "f_or": "Raje rezervirate prek Booking.com?", "f_or_link": "Apartma na Booking.com",
+    "f_send": "Pošlji povpraševanje",
     "subject": "Povpraševanje – Apartma Štimec",
     "t": {"estHint": "Izberite datume in videli boste ceno.", "estBadDates": "Odhod mora biti po prihodu.",
           "estBooked": "Nekateri izbrani dnevi so že zasedeni.", "estMin": "Julij in avgust: najmanj 3 noči.",
@@ -120,7 +123,7 @@ TEXT = {
     "directions": "Navodila za pot",
     "ct_eyebrow": "Kontakt", "ct_h2": "Pišite ali pokličite",
     "ct_lead": "Vprašanja pred rezervacijo? Najhitreje nas dosežete na WhatsApp.",
-    "ct_wa": "Pišite nam", "ct_phone": "Telefon", "ct_mail": "E-pošta", "ct_booking": "Ocene gostov",
+    "ct_wa": "Pišite nam", "ct_phone": "Telefon", "ct_mail": "E-pošta",
     "cookie": "Z Google Analytics štejemo obiske strani. Piškotke uporabimo samo z vašim dovoljenjem.",
     "cookie_yes": "Sprejmi", "cookie_no": "Zavrni",
     "mb_book": "Prosti termini",
@@ -171,7 +174,7 @@ TEXT = {
     "free": "free", "booked": "booked",
     "f_arr": "Arrival", "f_dep": "Departure", "f_adults": "Adults", "f_kids": "Children 7–17", "f_small": "Children under 7",
     "f_name": "Full name", "f_email": "Email", "f_phone": "Phone (optional)", "f_msg": "Message (optional)",
-    "f_send": "Send request", "f_or": "Prefer to book on Booking.com?", "f_or_link": "See the apartment on Booking.com",
+    "f_send": "Send request",
     "subject": "Booking request – Apartment Štimec",
     "t": {"estHint": "Choose your dates to see the price.", "estBadDates": "Departure must be after arrival.",
           "estBooked": "Some of these dates are already booked.", "estMin": "July and August: minimum 3 nights.",
@@ -184,7 +187,7 @@ TEXT = {
     "directions": "Get directions",
     "ct_eyebrow": "Contact", "ct_h2": "Message or call us",
     "ct_lead": "Questions before you book? WhatsApp is the fastest way to reach us.",
-    "ct_wa": "Message us", "ct_phone": "Phone", "ct_mail": "Email", "ct_booking": "Guest reviews",
+    "ct_wa": "Message us", "ct_phone": "Phone", "ct_mail": "Email",
     "cookie": "We use Google Analytics to count visits. Cookies are set only if you agree.",
     "cookie_yes": "Accept", "cookie_no": "Decline",
     "mb_book": "Check dates",
@@ -235,7 +238,7 @@ TEXT = {
     "free": "frei", "booked": "belegt",
     "f_arr": "Anreise", "f_dep": "Abreise", "f_adults": "Erwachsene", "f_kids": "Kinder 7–17", "f_small": "Kinder unter 7",
     "f_name": "Vor- und Nachname", "f_email": "E-Mail", "f_phone": "Telefon (optional)", "f_msg": "Nachricht (optional)",
-    "f_send": "Anfrage senden", "f_or": "Lieber über Booking.com buchen?", "f_or_link": "Die Wohnung auf Booking.com",
+    "f_send": "Anfrage senden",
     "subject": "Anfrage – Apartma Štimec",
     "t": {"estHint": "Wählen Sie Ihre Daten, um den Preis zu sehen.", "estBadDates": "Die Abreise muss nach der Anreise liegen.",
           "estBooked": "Einige dieser Tage sind bereits belegt.", "estMin": "Juli und August: mindestens 3 Nächte.",
@@ -248,7 +251,7 @@ TEXT = {
     "directions": "Route planen",
     "ct_eyebrow": "Kontakt", "ct_h2": "Schreiben Sie uns oder rufen Sie an",
     "ct_lead": "Fragen vor der Buchung? Am schnellsten erreichen Sie uns per WhatsApp.",
-    "ct_wa": "Nachricht schreiben", "ct_phone": "Telefon", "ct_mail": "E-Mail", "ct_booking": "Gästebewertungen",
+    "ct_wa": "Nachricht schreiben", "ct_phone": "Telefon", "ct_mail": "E-Mail",
     "cookie": "Wir zählen Besuche mit Google Analytics. Cookies setzen wir nur mit Ihrer Zustimmung.",
     "cookie_yes": "Akzeptieren", "cookie_no": "Ablehnen",
     "mb_book": "Freie Termine",
@@ -299,7 +302,7 @@ TEXT = {
     "free": "libero", "booked": "occupato",
     "f_arr": "Arrivo", "f_dep": "Partenza", "f_adults": "Adulti", "f_kids": "Bambini 7–17", "f_small": "Bambini sotto i 7",
     "f_name": "Nome e cognome", "f_email": "E-mail", "f_phone": "Telefono (facoltativo)", "f_msg": "Messaggio (facoltativo)",
-    "f_send": "Invia richiesta", "f_or": "Preferisci prenotare su Booking.com?", "f_or_link": "L'appartamento su Booking.com",
+    "f_send": "Invia richiesta",
     "subject": "Richiesta – Appartamento Štimec",
     "t": {"estHint": "Scegli le date per vedere il prezzo.", "estBadDates": "La partenza deve essere dopo l'arrivo.",
           "estBooked": "Alcune di queste date sono già occupate.", "estMin": "Luglio e agosto: minimo 3 notti.",
@@ -312,7 +315,7 @@ TEXT = {
     "directions": "Indicazioni stradali",
     "ct_eyebrow": "Contatti", "ct_h2": "Scrivici o chiamaci",
     "ct_lead": "Domande prima di prenotare? Il modo più rapido è WhatsApp.",
-    "ct_wa": "Scrivici", "ct_phone": "Telefono", "ct_mail": "E-mail", "ct_booking": "Recensioni degli ospiti",
+    "ct_wa": "Scrivici", "ct_phone": "Telefono", "ct_mail": "E-mail",
     "cookie": "Usiamo Google Analytics per contare le visite. I cookie vengono impostati solo con il tuo consenso.",
     "cookie_yes": "Accetta", "cookie_no": "Rifiuta",
     "mb_book": "Verifica date",
@@ -367,7 +370,9 @@ def head(lang, t):
   <meta property="og:image:height" content="630">
   <meta property="og:url" content="{url}">
   <meta name="theme-color" content="#16324f">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%2316324f'/><circle cx='70' cy='32' r='13' fill='%23efe5d6'/><path d='M0 68 Q 25 52 50 68 T 100 68 V 100 H 0 Z' fill='%23b8683c'/></svg>">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="preload" as="image" href="/img/balkon.webp" imagesrcset="/img/balkon-sm.webp 720w, /img/balkon.webp 1448w" imagesizes="100vw">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -442,7 +447,7 @@ def body(lang, t):
   <img class="hero-img" src="/img/balkon.webp" srcset="/img/balkon-sm.webp 720w, /img/balkon.webp 1448w" sizes="100vw"
        alt="{t['c_balcony']}" fetchpriority="high" width="1448" height="1086">
   <div class="container">
-    <a class="rating" href="{BOOKING_URL}" target="_blank" rel="noopener"><i class="bi bi-star-fill text-warning"></i><b>{RATING}</b> / 10 {t['rating']}</a>
+    <span class="rating"><i class="bi bi-star-fill text-warning"></i><b>{RATING}</b> / 10 {t['rating']}</span>
     <h1>{t['h1']}</h1>
     <p class="hero-sub">{t['sub']}</p>
     <div class="d-flex flex-wrap gap-2">
@@ -538,7 +543,6 @@ def body(lang, t):
               <div id="form-status" class="form-status" role="status"></div></div>
           </div>
         </form>
-        <p class="small text-muted mt-3 mb-0">{t['f_or']} <a href="{BOOKING_URL}" target="_blank" rel="noopener">{t['f_or_link']}</a></p>
       </div></div>
     </div>
   </div>
@@ -572,7 +576,7 @@ def body(lang, t):
       <div class="col-sm-6 col-lg-3"><a class="contact-tile" href="{wa}" target="_blank" rel="noopener"><i class="bi bi-whatsapp"></i><div>WhatsApp<small>{t['ct_wa']}</small></div></a></div>
       <div class="col-sm-6 col-lg-3"><a class="contact-tile" href="tel:{PHONE}"><i class="bi bi-telephone"></i><div>{PHONE_SHOW}<small>{t['ct_phone']}</small></div></a></div>
       <div class="col-sm-6 col-lg-3"><a class="contact-tile" href="mailto:{EMAIL}"><i class="bi bi-envelope"></i><div>{EMAIL}<small>{t['ct_mail']}</small></div></a></div>
-      <div class="col-sm-6 col-lg-3"><a class="contact-tile" href="{BOOKING_URL}" target="_blank" rel="noopener"><i class="bi bi-star"></i><div>Booking.com {RATING}/10<small>{t['ct_booking']}</small></div></a></div>
+      <div class="col-sm-6 col-lg-3"><a class="contact-tile" href="{MAPS_LINK}" target="_blank" rel="noopener"><i class="bi bi-geo-alt"></i><div>Senčna ulica 8, Izola<small>{t['directions']}</small></div></a></div>
     </div>
   </div>
 </section>
