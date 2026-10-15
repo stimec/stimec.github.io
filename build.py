@@ -44,7 +44,7 @@ EMAIL = "stimec@gmail.com"
 ADDRESS = "Senčna ulica 8, 6310 Izola"
 GEO = (45.528154, 13.650045)
 RATING = "9.1"
-RNO = ""   # RNO ID of the accommodation; shown in footer and structured data when set
+RNO = "128593"   # RNO ID of the accommodation; shown in footer and structured data when set
 
 PRICES = {"high": 140, "mid": 115, "low": 90, "cleaning": 40,
           "taxAdult": 3.10, "taxChild": 1.55}
