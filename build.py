@@ -2,8 +2,10 @@
 """
 build.py - generates the static pages of www.stimec.eu from one template.
 
-Version: 1.4.0
+Version: 1.5.0
 Changelog:
+  1.5.0 (2026-10-15) Added "Arrival and house rules" card (2nd floor, self
+                     check-in, parking, no pets, smoking on balcony only).
   1.4.0 (2026-10-15) Automatic dark mode (follows device setting).
   1.3.0 (2026-10-15) Booking rating moved from the hero photo to the
                      highlights strip (readable score box).
@@ -53,6 +55,31 @@ PHOTOS = [
     ("kopalnica", "", "c_bathroom"),
     ("hisa1", "", "c_house"),
 ]
+
+
+# Arrival and house rules (shown under the amenities card)
+ARRIVAL = {
+    "sl": ("Prihod in hišni red", [
+        ("bi-building", "<b>2. nadstropje:</b> apartma je v drugem nadstropju hiše, do njega vodijo stopnice."),
+        ("bi-key", "<b>Samostojni prihod:</b> ključ je v sefu za ključe pri hiši. Po rezervaciji prejmete PDF s slikami parkirnega mesta in lokacije ključa."),
+        ("bi-p-circle", "<b>Parkiranje:</b> eno brezplačno parkirno mesto pred hišo."),
+        ("bi-slash-circle", "<b>Hišni ljubljenčki</b> niso dovoljeni. <b>Kajenje</b> je dovoljeno samo na balkonu.")]),
+    "en": ("Arrival and house rules", [
+        ("bi-building", "<b>Second floor:</b> the apartment is on the second floor of the house, reached by stairs."),
+        ("bi-key", "<b>Self check-in:</b> the key is in a key safe at the house. After booking you get a PDF with photos of the parking space and the key location."),
+        ("bi-p-circle", "<b>Parking:</b> one free space in front of the house."),
+        ("bi-slash-circle", "<b>No pets.</b> Smoking is allowed on the balcony only.")]),
+    "de": ("Anreise und Hausregeln", [
+        ("bi-building", "<b>Zweiter Stock:</b> Die Wohnung liegt im zweiten Stock des Hauses, der Zugang erfolgt über eine Treppe."),
+        ("bi-key", "<b>Selbst-Check-in:</b> Der Schlüssel liegt in einem Schlüsselsafe am Haus. Nach der Buchung erhalten Sie ein PDF mit Fotos vom Parkplatz und vom Standort des Schlüssels."),
+        ("bi-p-circle", "<b>Parken:</b> ein kostenloser Stellplatz vor dem Haus."),
+        ("bi-slash-circle", "<b>Keine Haustiere.</b> Rauchen ist nur auf dem Balkon erlaubt.")]),
+    "it": ("Arrivo e regole della casa", [
+        ("bi-building", "<b>Secondo piano:</b> l'appartamento si trova al secondo piano della casa, si accede tramite scale."),
+        ("bi-key", "<b>Self check-in:</b> la chiave è in una cassetta di sicurezza (key safe) presso la casa. Dopo la prenotazione ricevi un PDF con le foto del parcheggio e della posizione della chiave."),
+        ("bi-p-circle", "<b>Parcheggio:</b> un posto auto gratuito davanti alla casa."),
+        ("bi-slash-circle", "<b>Animali non ammessi.</b> Si può fumare solo sul balcone.")]),
+}
 
 PATH = {"sl": "/", "en": "/en/", "de": "/de/", "it": "/it/"}
 LABEL = {"sl": "SLO", "en": "ENG", "de": "DEU", "it": "ITA"}
@@ -342,7 +369,7 @@ def head(lang, t):
         "priceRange": f"€{PRICES['low']}–€{PRICES['high']}",
         "checkinTime": "15:00",
         "checkoutTime": "10:00",
-        "petsAllowed": None,
+        "petsAllowed": False,
         "address": {"@type": "PostalAddress", "streetAddress": "Senčna ulica 8", "addressLocality": "Izola",
                     "postalCode": "6310", "addressCountry": "SI"},
         "geo": {"@type": "GeoCoordinates", "latitude": GEO[0], "longitude": GEO[1]},
@@ -433,6 +460,7 @@ def body(lang, t):
     rooms = "".join(f"""
       <div class="col-sm-6"><div class="room"><i class="bi {i}" aria-hidden="true"></i><h3>{h}</h3><p>{p}</p></div></div>"""
                     for i, h, p in t["rooms"])
+    arrival = "".join(f'<li><i class="bi {i}" aria-hidden="true"></i><span>{r}</span></li>' for i, r in ARRIVAL[lang][1])
     amen = "".join(f'<li><i class="bi {i}" aria-hidden="true"></i>{n}</li>' for i, n in t["amen"])
     seasons = "".join(f"""
         <div class="price-row"><div class="season">{s}{f'<small>{n}</small>' if n else ''}</div>
@@ -497,6 +525,7 @@ def body(lang, t):
       <div class="col-lg-5"><div class="room">
         <h3 class="mt-0 mb-3">{t['am_h3']}</h3><ul class="amenities">{amen}</ul></div></div>
     </div>
+    <div class="room mt-4"><h3 class="mt-0 mb-2">{ARRIVAL[lang][0]}</h3><ul class="rules rules-2">{arrival}</ul></div>
   </div>
 </section>
 
