@@ -181,3 +181,56 @@ footer a { color: rgba(255,255,255,.75); }
 .hl-rating span:not(.score) { font-size: .9rem; color: var(--muted); }
 @media (min-width: 992px) { .hl-rating { border-right: 1px solid var(--line); padding-right: 1.5rem; } }
 @media (max-width: 991.98px) { .hl-rating { padding-bottom: .9rem; border-bottom: 1px solid var(--line); } }
+
+/* ---------- Dark mode: follows the phone/computer setting, no switch ---------- */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f1b28; --surface: #172637; --surface-2: #1e3146;
+    --ink: #e6e1d8; --muted: #a2adb8; --line: #2a3d52;
+    --head-c: #f0e4cf; --terracotta: #e39a6e;
+  }
+  body { background: var(--bg); color: var(--ink); }
+  h1, h2, h3, .serif, a { color: var(--head-c); }
+  .site-nav { background: rgba(15,27,40,.95); }
+  .site-nav .navbar-brand, .lang-switch a[aria-current="true"] { color: var(--head-c); }
+  .navbar-toggler { border-color: var(--line); }
+  .navbar-toggler-icon { filter: invert(1); }
+  .btn-navy { background: var(--head-c); color: #0f1b28; }
+  .btn-navy:hover, .btn-navy:focus { background: #fff; color: #0f1b28; }
+  .btn-sand { background: var(--surface-2); color: var(--head-c); }
+  .btn-sand:hover { background: #26405a; color: #fff; }
+  .highlights, .room, .price-table, .card-soft, #cookie-banner, .mobile-bar { background: var(--surface); border-color: var(--line); }
+  .hl strong, .hl-rating strong, .price-row .season, .price-row .amount, .dist li b, .estimate .total { color: var(--head-c); }
+  .hl-rating .score { background: var(--head-c); color: #0f1b28; }
+  .cta-band { background: var(--surface-2); }
+  .cta-band .btn-sand { background: var(--head-c); color: #0f1b28; }
+  #booking { background: #13212f; }
+  .card-soft { box-shadow: none; border: 1px solid var(--line); }
+  .gallery button { background: var(--surface); }
+  .gallery .plan img { background: #f6f2ea; }
+  #contact, footer { background: #0a131d; }
+  .map-wrap { background: var(--surface); box-shadow: none; }
+  /* calendar */
+  #calendar { --fc-border-color: var(--line); --fc-neutral-bg-color: #13202e; --fc-page-bg-color: var(--surface); --fc-today-bg-color: rgba(227,154,110,.18); }
+  #calendar .fc-toolbar-title { color: var(--head-c); }
+  #calendar .fc-button { background: var(--surface-2); color: var(--head-c); border-color: var(--line); }
+  #calendar .fc-button:hover { background: #26405a; }
+  #calendar a { color: var(--ink); }
+  #calendar .fc-theme-standard td, #calendar .fc-theme-standard th, #calendar .fc-scrollgrid { border-color: var(--line); }
+  #calendar .fc-day-disabled, #calendar .fc-non-business { background: #13202e; }
+  #calendar .fc-day-today { background: rgba(227,154,110,.18) !important; }
+  #calendar .fc-bg-event { background: #e0675a !important; opacity: .45; }
+  .legend .free::before { background: var(--surface); }
+  /* form */
+  .form-control, .form-select { background-color: var(--surface-2); color: var(--ink); border-color: var(--line); color-scheme: dark; }
+  .form-control:focus, .form-select:focus { background-color: var(--surface-2); color: var(--ink); border-color: var(--terracotta); box-shadow: 0 0 0 .2rem rgba(227,154,110,.2); }
+  .form-select { --bs-form-select-bg-img: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23e6e1d8' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e"); }
+  .estimate { background: #13212f; border-color: var(--line); }
+  .estimate hr { border-color: var(--line); opacity: 1; }
+  .estimate .warn { color: #f08a7c; }
+  .text-muted { color: var(--muted) !important; }
+  .form-status.ok { background: #183a26; color: #a7e3b8; }
+  .form-status.err { background: #45201b; color: #f5b3a8; }
+  .mobile-bar .mb-call { background: var(--surface-2); color: var(--head-c); }
+  .mobile-bar .mb-book { background: var(--head-c); color: #0f1b28; }
+}

@@ -2,8 +2,9 @@
 """
 build.py - generates the static pages of www.stimec.eu from one template.
 
-Version: 1.3.0
+Version: 1.4.0
 Changelog:
+  1.4.0 (2026-10-15) Automatic dark mode (follows device setting).
   1.3.0 (2026-10-15) Booking rating moved from the hero photo to the
                      highlights strip (readable score box).
   1.2.0 (2026-10-15) Brighter favicon (favicon.svg/.ico, apple-touch-icon);
@@ -371,7 +372,9 @@ def head(lang, t):
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:url" content="{url}">
-  <meta name="theme-color" content="#16324f">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#16324f" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0f1b28" media="(prefers-color-scheme: dark)">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="/favicon.ico" sizes="48x48">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
