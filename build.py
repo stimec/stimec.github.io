@@ -2,8 +2,10 @@
 """
 build.py - generates the static pages of www.stimec.eu from one template.
 
-Version: 1.2.0
+Version: 1.3.0
 Changelog:
+  1.3.0 (2026-10-15) Booking rating moved from the hero photo to the
+                     highlights strip (readable score box).
   1.2.0 (2026-10-15) Brighter favicon (favicon.svg/.ico, apple-touch-icon);
                      Booking rating 9.1, no longer a link; removed
                      "book on Booking.com" link and Booking contact tile.
@@ -72,7 +74,7 @@ TEXT = {
     "h1": "Apartma z balkonom in pogledom na morje v Izoli",
     "sub": "65 m² · do 4 osebe · brezplačno parkirišče · 700 m do plaže",
     "check": "Preveri proste termine", "wa": "WhatsApp",
-    "rating": "na Booking.com",
+    "rating": "na Booking.com", "rating_lbl": "Ocena gostov",
     "nav_apt": "Apartma", "nav_photos": "Fotografije", "nav_prices": "Cenik", "nav_loc": "Lokacija", "nav_contact": "Kontakt",
     "hl": [("bi-sun", "Dva balkona", "pogled na morje"), ("bi-car-front", "Brezplačno parkiranje", "pri hiši"),
            ("bi-water", "Plaža 700 m", "približno 9 minut peš"), ("bi-house-heart", "65 m², do 4 osebe", "spalnica + dnevni prostor")],
@@ -136,7 +138,7 @@ TEXT = {
     "h1": "Sea-view apartment with balcony in Izola",
     "sub": "65 m² · up to 4 guests · free parking · 700 m to the beach",
     "check": "Check availability", "wa": "WhatsApp",
-    "rating": "on Booking.com",
+    "rating": "on Booking.com", "rating_lbl": "Guest rating",
     "nav_apt": "Apartment", "nav_photos": "Photos", "nav_prices": "Prices", "nav_loc": "Location", "nav_contact": "Contact",
     "hl": [("bi-sun", "Two balconies", "with sea view"), ("bi-car-front", "Free parking", "at the house"),
            ("bi-water", "Beach 700 m", "about 9 minutes on foot"), ("bi-house-heart", "65 m², up to 4", "bedroom + living room")],
@@ -200,7 +202,7 @@ TEXT = {
     "h1": "Ferienwohnung mit Balkon und Meerblick in Izola",
     "sub": "65 m² · bis 4 Personen · kostenloser Parkplatz · 700 m zum Strand",
     "check": "Freie Termine prüfen", "wa": "WhatsApp",
-    "rating": "auf Booking.com",
+    "rating": "auf Booking.com", "rating_lbl": "Gästebewertung",
     "nav_apt": "Wohnung", "nav_photos": "Fotos", "nav_prices": "Preise", "nav_loc": "Lage", "nav_contact": "Kontakt",
     "hl": [("bi-sun", "Zwei Balkone", "mit Meerblick"), ("bi-car-front", "Kostenloser Parkplatz", "direkt am Haus"),
            ("bi-water", "Strand 700 m", "ca. 9 Minuten zu Fuß"), ("bi-house-heart", "65 m², bis 4 Personen", "Schlafzimmer + Wohnraum")],
@@ -264,7 +266,7 @@ TEXT = {
     "h1": "Appartamento con balcone e vista mare a Isola",
     "sub": "65 m² · fino a 4 ospiti · parcheggio gratuito · 700 m dalla spiaggia",
     "check": "Verifica disponibilità", "wa": "WhatsApp",
-    "rating": "su Booking.com",
+    "rating": "su Booking.com", "rating_lbl": "Valutazione degli ospiti",
     "nav_apt": "Appartamento", "nav_photos": "Foto", "nav_prices": "Prezzi", "nav_loc": "Posizione", "nav_contact": "Contatti",
     "hl": [("bi-sun", "Due balconi", "con vista mare"), ("bi-car-front", "Parcheggio gratuito", "presso la casa"),
            ("bi-water", "Spiaggia a 700 m", "circa 9 minuti a piedi"), ("bi-house-heart", "65 m², fino a 4", "camera + soggiorno")],
@@ -417,8 +419,10 @@ def nav(lang, t):
 def body(lang, t):
     wa = f"https://wa.me/{PHONE.lstrip('+')}"
     hl = "".join(f"""
-      <div class="col-6 col-lg-3"><div class="hl"><i class="bi {i}" aria-hidden="true"></i><div><strong>{a}</strong><span>{b}</span></div></div></div>"""
+      <div class="col-6 col-lg"><div class="hl"><i class="bi {i}" aria-hidden="true"></i><div><strong>{a}</strong><span>{b}</span></div></div></div>"""
                  for i, a, b in t["hl"])
+    hl = f"""
+      <div class="col-12 col-lg-auto pe-lg-4"><div class="hl-rating"><span class="score">{RATING}</span><div><strong>{t['rating_lbl']}</strong><span>{RATING} / 10 {t['rating']}</span></div></div></div>""" + hl
     gallery = "".join(f"""
       <button type="button" class="{cls}" data-full="/img/{f}.webp" aria-label="{t[c]}">
         <img src="/img/{f}-sm.webp" alt="{t[c]}" loading="lazy" decoding="async"><span class="cap">{t[c]}</span></button>"""
@@ -447,7 +451,6 @@ def body(lang, t):
   <img class="hero-img" src="/img/balkon.webp" srcset="/img/balkon-sm.webp 720w, /img/balkon.webp 1448w" sizes="100vw"
        alt="{t['c_balcony']}" fetchpriority="high" width="1448" height="1086">
   <div class="container">
-    <span class="rating"><i class="bi bi-star-fill text-warning"></i><b>{RATING}</b> / 10 {t['rating']}</span>
     <h1>{t['h1']}</h1>
     <p class="hero-sub">{t['sub']}</p>
     <div class="d-flex flex-wrap gap-2">

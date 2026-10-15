@@ -173,3 +173,11 @@ footer a { color: rgba(255,255,255,.75); }
 @media (min-width: 768px) { #cookie-banner { bottom: 16px; left: 16px; right: auto; } }
 #cookie-banner.show { display: flex; }
 #calendar .fc-bg-event .fc-event-title { display: none; }
+
+/* Rating in highlights strip */
+.hl-rating { display: flex; align-items: center; gap: .8rem; }
+.hl-rating .score { background: var(--navy); color: #fff; font-family: var(--head); font-size: 1.45rem; line-height: 1; padding: .55rem .6rem; border-radius: 10px 10px 10px 2px; min-width: 3.1rem; text-align: center; }
+.hl-rating strong { display: block; color: var(--navy); line-height: 1.2; }
+.hl-rating span:not(.score) { font-size: .9rem; color: var(--muted); }
+@media (min-width: 992px) { .hl-rating { border-right: 1px solid var(--line); padding-right: 1.5rem; } }
+@media (max-width: 991.98px) { .hl-rating { padding-bottom: .9rem; border-bottom: 1px solid var(--line); } }
