@@ -2,8 +2,10 @@
 """
 build.py - generates the static pages of www.stimec.eu from one template.
 
-Version: 1.0.0
+Version: 1.1.0
 Changelog:
+  1.1.0 (2026-10-15) Gallery reduced to 9 photos (no second bedroom shot,
+                     coast, harbour, beach); new gallery heading text.
   1.0.0 (2026-10-15) First version. Builds / (sl), /en/, /de/, /it/,
                      gallery.html (redirect), sitemap.xml and robots.txt.
 
@@ -40,14 +42,10 @@ PHOTOS = [
     ("dnevna1", "", "c_living"),
     ("kuhinja", "", "c_kitchen"),
     ("soba1", "", "c_bedroom"),
-    ("soba2", "", "c_bedroom"),
-    ("kopalnica", "", "c_bathroom"),
+    ("izola1", "big", "c_izola"),
     ("tloris", "tall plan", "c_plan"),
+    ("kopalnica", "", "c_bathroom"),
     ("hisa1", "", "c_house"),
-    ("izola1", "wide", "c_izola"),
-    ("izola2", "", "c_coast"),
-    ("izola3", "wide", "c_harbour"),
-    ("izola4", "wide", "c_beach"),
 ]
 
 PATH = {"sl": "/", "en": "/en/", "de": "/de/", "it": "/it/"}
@@ -75,8 +73,8 @@ TEXT = {
     "nav_apt": "Apartma", "nav_photos": "Fotografije", "nav_prices": "Cenik", "nav_loc": "Lokacija", "nav_contact": "Kontakt",
     "hl": [("bi-sun", "Dva balkona", "pogled na morje"), ("bi-car-front", "Brezplačno parkiranje", "pri hiši"),
            ("bi-water", "Plaža 700 m", "približno 9 minut peš"), ("bi-house-heart", "65 m², do 4 osebe", "spalnica + dnevni prostor")],
-    "ph_eyebrow": "Fotografije", "ph_h2": "Poglejte si apartma",
-    "ph_lead": "Vse fotografije so resnične in posnete v apartmaju. Kliknite za večjo sliko.",
+    "ph_eyebrow": "Fotografije", "ph_h2": "Poglejte si naše slike",
+    "ph_lead": "Kliknite na sliko za večji prikaz.",
     "c_balcony": "Balkon s pogledom na morje", "c_living": "Dnevni prostor", "c_kitchen": "Kuhinja", "c_bedroom": "Spalnica",
     "c_bathroom": "Kopalnica", "c_plan": "Tloris apartmaja", "c_house": "Hiša in parkirišče", "c_izola": "Izola iz zraka",
     "c_coast": "Obala pri Izoli", "c_harbour": "Pristanišče v Izoli", "c_beach": "Plaža",
@@ -139,8 +137,8 @@ TEXT = {
     "nav_apt": "Apartment", "nav_photos": "Photos", "nav_prices": "Prices", "nav_loc": "Location", "nav_contact": "Contact",
     "hl": [("bi-sun", "Two balconies", "with sea view"), ("bi-car-front", "Free parking", "at the house"),
            ("bi-water", "Beach 700 m", "about 9 minutes on foot"), ("bi-house-heart", "65 m², up to 4", "bedroom + living room")],
-    "ph_eyebrow": "Photos", "ph_h2": "Take a look inside",
-    "ph_lead": "All photos are real and taken in the apartment. Click to enlarge.",
+    "ph_eyebrow": "Photos", "ph_h2": "Take a look at our photos",
+    "ph_lead": "Click a photo to see it larger.",
     "c_balcony": "Balcony with sea view", "c_living": "Living room", "c_kitchen": "Kitchen", "c_bedroom": "Bedroom",
     "c_bathroom": "Bathroom", "c_plan": "Floor plan", "c_house": "The house and parking", "c_izola": "Izola from above",
     "c_coast": "Coast near Izola", "c_harbour": "Izola harbour", "c_beach": "Beach",
@@ -203,8 +201,8 @@ TEXT = {
     "nav_apt": "Wohnung", "nav_photos": "Fotos", "nav_prices": "Preise", "nav_loc": "Lage", "nav_contact": "Kontakt",
     "hl": [("bi-sun", "Zwei Balkone", "mit Meerblick"), ("bi-car-front", "Kostenloser Parkplatz", "direkt am Haus"),
            ("bi-water", "Strand 700 m", "ca. 9 Minuten zu Fuß"), ("bi-house-heart", "65 m², bis 4 Personen", "Schlafzimmer + Wohnraum")],
-    "ph_eyebrow": "Fotos", "ph_h2": "Ein Blick in die Wohnung",
-    "ph_lead": "Alle Fotos sind echt und in der Wohnung aufgenommen. Zum Vergrößern anklicken.",
+    "ph_eyebrow": "Fotos", "ph_h2": "Sehen Sie sich unsere Fotos an",
+    "ph_lead": "Zum Vergrößern auf ein Foto klicken.",
     "c_balcony": "Balkon mit Meerblick", "c_living": "Wohnraum", "c_kitchen": "Küche", "c_bedroom": "Schlafzimmer",
     "c_bathroom": "Badezimmer", "c_plan": "Grundriss", "c_house": "Haus und Parkplatz", "c_izola": "Izola von oben",
     "c_coast": "Küste bei Izola", "c_harbour": "Hafen von Izola", "c_beach": "Strand",
@@ -267,8 +265,8 @@ TEXT = {
     "nav_apt": "Appartamento", "nav_photos": "Foto", "nav_prices": "Prezzi", "nav_loc": "Posizione", "nav_contact": "Contatti",
     "hl": [("bi-sun", "Due balconi", "con vista mare"), ("bi-car-front", "Parcheggio gratuito", "presso la casa"),
            ("bi-water", "Spiaggia a 700 m", "circa 9 minuti a piedi"), ("bi-house-heart", "65 m², fino a 4", "camera + soggiorno")],
-    "ph_eyebrow": "Foto", "ph_h2": "Uno sguardo all'appartamento",
-    "ph_lead": "Tutte le foto sono reali e scattate nell'appartamento. Clicca per ingrandire.",
+    "ph_eyebrow": "Foto", "ph_h2": "Guarda le nostre foto",
+    "ph_lead": "Clicca su una foto per ingrandirla.",
     "c_balcony": "Balcone con vista mare", "c_living": "Soggiorno", "c_kitchen": "Cucina", "c_bedroom": "Camera da letto",
     "c_bathroom": "Bagno", "c_plan": "Planimetria", "c_house": "La casa e il parcheggio", "c_izola": "Isola dall'alto",
     "c_coast": "La costa vicino a Isola", "c_harbour": "Il porto di Isola", "c_beach": "Spiaggia",
