@@ -132,6 +132,7 @@
     var clash = booked.some(function (b) { return start < b.end && end > b.start; });
     if (clash) warn.push(T.estBooked);
     if (highNights && nights < 3) warn.push(T.estMin);
+    else if (nights < 2) warn.push(T.estMin2);
     if (adults + kids + small > 4) warn.push(T.estMax);
     box.innerHTML =
       '<div class="d-flex justify-content-between"><span>' + nights + ' ' + (nights === 1 ? T.night : T.nights) + '</span><span>' + eur(room) + '</span></div>' +

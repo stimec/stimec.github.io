@@ -2,8 +2,9 @@
 """
 build.py - generates the static pages of www.stimec.eu from one template.
 
-Version: 1.6.0
+Version: 1.7.0
 Changelog:
+  1.7.0 (2026-10-15) Minimum stay 2 nights outside July/August (3 in July/August).
   1.6.0 (2026-10-15) SEO/accessibility pass: shorter titles and descriptions,
                      og:locale/site_name/twitter tags, Apartment details and
                      optional RNO ID in structured data, descriptive photo alt
@@ -176,8 +177,8 @@ TEXT = {
              ("bi-moisture", "Pralni stroj"), ("bi-cup-straw", "Pomivalni stroj"), ("bi-sun", "Dva balkona s pogledom na morje")],
     "pr_eyebrow": "Cenik", "pr_h2": "Cene in pogoji", "pr_lead": "Cena velja za celoten apartma na noč, ne glede na število oseb.",
     "seasons": [("Julij in avgust", "glavna sezona, najmanj 3 noči", PRICES["high"]),
-                ("Junij in september", "", PRICES["mid"]),
-                ("Oktober–maj", "", PRICES["low"])],
+                ("Junij in september", "najmanj 2 noči", PRICES["mid"]),
+                ("Oktober–maj", "najmanj 2 noči", PRICES["low"])],
     "per_night": "/ noč",
     "rules_h3": "Dobro je vedeti",
     "rules": [("bi-check2-circle", "<b>V ceni:</b> posteljnina, brisače, elektrika, plin."),
@@ -195,7 +196,7 @@ TEXT = {
     "f_send": "Pošlji povpraševanje",
     "subject": "Povpraševanje – Apartma Štimec",
     "t": {"estHint": "Izberite datume in videli boste ceno.", "estBadDates": "Odhod mora biti po prihodu.",
-          "estBooked": "Nekateri izbrani dnevi so že zasedeni.", "estMin": "Julij in avgust: najmanj 3 noči.",
+          "estBooked": "Nekateri izbrani dnevi so že zasedeni.", "estMin": "Julij in avgust: najmanj 3 noči.", "estMin2": "Najmanj 2 noči.",
           "estMax": "Največ 4 osebe.", "night": "noč", "nights": "noči", "cleaning": "Končno čiščenje",
           "tax": "Turistična taksa", "total": "Skupaj (okvirno)", "estNote": "Končno ceno potrdimo v odgovoru.",
           "sent": "Hvala! Odgovorimo vam po e-pošti.", "failed": "Pošiljanje ni uspelo. Pišite nam na WhatsApp ali e-pošto."},
@@ -240,8 +241,8 @@ TEXT = {
              ("bi-moisture", "Washing machine"), ("bi-cup-straw", "Dishwasher"), ("bi-sun", "Two sea-view balconies")],
     "pr_eyebrow": "Prices", "pr_h2": "Prices and terms", "pr_lead": "Prices are for the whole apartment per night, regardless of the number of guests.",
     "seasons": [("July and August", "high season, minimum 3 nights", PRICES["high"]),
-                ("June and September", "", PRICES["mid"]),
-                ("October–May", "", PRICES["low"])],
+                ("June and September", "minimum 2 nights", PRICES["mid"]),
+                ("October–May", "minimum 2 nights", PRICES["low"])],
     "per_night": "/ night",
     "rules_h3": "Good to know",
     "rules": [("bi-check2-circle", "<b>Included:</b> bed linen, towels, electricity, gas."),
@@ -259,7 +260,7 @@ TEXT = {
     "f_send": "Send request",
     "subject": "Booking request – Apartment Štimec",
     "t": {"estHint": "Choose your dates to see the price.", "estBadDates": "Departure must be after arrival.",
-          "estBooked": "Some of these dates are already booked.", "estMin": "July and August: minimum 3 nights.",
+          "estBooked": "Some of these dates are already booked.", "estMin": "July and August: minimum 3 nights.", "estMin2": "Minimum 2 nights.",
           "estMax": "Maximum 4 guests.", "night": "night", "nights": "nights", "cleaning": "Final cleaning",
           "tax": "Tourist tax", "total": "Total (approx.)", "estNote": "We confirm the final price in our reply.",
           "sent": "Thank you! We'll reply by email.", "failed": "Sending failed. Please message us on WhatsApp or by email."},
@@ -304,8 +305,8 @@ TEXT = {
              ("bi-moisture", "Waschmaschine"), ("bi-cup-straw", "Geschirrspüler"), ("bi-sun", "Zwei Balkone mit Meerblick")],
     "pr_eyebrow": "Preise", "pr_h2": "Preise und Bedingungen", "pr_lead": "Die Preise gelten für die ganze Wohnung pro Nacht, unabhängig von der Personenzahl.",
     "seasons": [("Juli und August", "Hauptsaison, mindestens 3 Nächte", PRICES["high"]),
-                ("Juni und September", "", PRICES["mid"]),
-                ("Oktober–Mai", "", PRICES["low"])],
+                ("Juni und September", "mindestens 2 Nächte", PRICES["mid"]),
+                ("Oktober–Mai", "mindestens 2 Nächte", PRICES["low"])],
     "per_night": "/ Nacht",
     "rules_h3": "Gut zu wissen",
     "rules": [("bi-check2-circle", "<b>Inklusive:</b> Bettwäsche, Handtücher, Strom, Gas."),
@@ -323,7 +324,7 @@ TEXT = {
     "f_send": "Anfrage senden",
     "subject": "Anfrage – Apartma Štimec",
     "t": {"estHint": "Wählen Sie Ihre Daten, um den Preis zu sehen.", "estBadDates": "Die Abreise muss nach der Anreise liegen.",
-          "estBooked": "Einige dieser Tage sind bereits belegt.", "estMin": "Juli und August: mindestens 3 Nächte.",
+          "estBooked": "Einige dieser Tage sind bereits belegt.", "estMin": "Juli und August: mindestens 3 Nächte.", "estMin2": "Mindestens 2 Nächte.",
           "estMax": "Höchstens 4 Personen.", "night": "Nacht", "nights": "Nächte", "cleaning": "Endreinigung",
           "tax": "Kurtaxe", "total": "Gesamt (ca.)", "estNote": "Den endgültigen Preis bestätigen wir in unserer Antwort.",
           "sent": "Vielen Dank! Wir antworten Ihnen per E-Mail.", "failed": "Senden fehlgeschlagen. Bitte schreiben Sie uns per WhatsApp oder E-Mail."},
@@ -368,8 +369,8 @@ TEXT = {
              ("bi-moisture", "Lavatrice"), ("bi-cup-straw", "Lavastoviglie"), ("bi-sun", "Due balconi con vista mare")],
     "pr_eyebrow": "Prezzi", "pr_h2": "Prezzi e condizioni", "pr_lead": "I prezzi si intendono per l'intero appartamento a notte, indipendentemente dal numero di ospiti.",
     "seasons": [("Luglio e agosto", "alta stagione, minimo 3 notti", PRICES["high"]),
-                ("Giugno e settembre", "", PRICES["mid"]),
-                ("Ottobre–maggio", "", PRICES["low"])],
+                ("Giugno e settembre", "minimo 2 notti", PRICES["mid"]),
+                ("Ottobre–maggio", "minimo 2 notti", PRICES["low"])],
     "per_night": "/ notte",
     "rules_h3": "Buono a sapersi",
     "rules": [("bi-check2-circle", "<b>Incluso:</b> biancheria, asciugamani, elettricità, gas."),
@@ -387,7 +388,7 @@ TEXT = {
     "f_send": "Invia richiesta",
     "subject": "Richiesta – Appartamento Štimec",
     "t": {"estHint": "Scegli le date per vedere il prezzo.", "estBadDates": "La partenza deve essere dopo l'arrivo.",
-          "estBooked": "Alcune di queste date sono già occupate.", "estMin": "Luglio e agosto: minimo 3 notti.",
+          "estBooked": "Alcune di queste date sono già occupate.", "estMin": "Luglio e agosto: minimo 3 notti.", "estMin2": "Minimo 2 notti.",
           "estMax": "Massimo 4 ospiti.", "night": "notte", "nights": "notti", "cleaning": "Pulizia finale",
           "tax": "Tassa di soggiorno", "total": "Totale (indicativo)", "estNote": "Il prezzo finale lo confermiamo nella risposta.",
           "sent": "Grazie! Ti risponderemo via e-mail.", "failed": "Invio non riuscito. Scrivici su WhatsApp o via e-mail."},
