@@ -2,8 +2,9 @@
 """
 build.py - generates the static pages of www.stimec.eu from one template.
 
-Version: 1.7.0
+Version: 1.8.0
 Changelog:
+  1.8.0 (2026-10-16) Prices 150/120/95; May moved to mid season.
   1.7.0 (2026-10-15) Minimum stay 2 nights outside July/August (3 in July/August).
   1.6.0 (2026-10-15) SEO/accessibility pass: shorter titles and descriptions,
                      og:locale/site_name/twitter tags, Apartment details and
@@ -47,7 +48,7 @@ GEO = (45.528154, 13.650045)
 RATING = "9.1"
 RNO = "128593"   # RNO ID of the accommodation; shown in footer and structured data when set
 
-PRICES = {"high": 140, "mid": 115, "low": 90, "cleaning": 40,
+PRICES = {"high": 150, "mid": 120, "low": 95, "cleaning": 40,
           "taxAdult": 3.10, "taxChild": 1.55}
 
 # Photos: (file stem, layout class, caption key)
@@ -177,8 +178,8 @@ TEXT = {
              ("bi-moisture", "Pralni stroj"), ("bi-cup-straw", "Pomivalni stroj"), ("bi-sun", "Dva balkona s pogledom na morje")],
     "pr_eyebrow": "Cenik", "pr_h2": "Cene in pogoji", "pr_lead": "Cena velja za celoten apartma na noč, ne glede na število oseb.",
     "seasons": [("Julij in avgust", "glavna sezona, najmanj 3 noči", PRICES["high"]),
-                ("Junij in september", "najmanj 2 noči", PRICES["mid"]),
-                ("Oktober–maj", "najmanj 2 noči", PRICES["low"])],
+                ("Maj, junij in september", "najmanj 2 noči", PRICES["mid"]),
+                ("Oktober–april", "najmanj 2 noči", PRICES["low"])],
     "per_night": "/ noč",
     "rules_h3": "Dobro je vedeti",
     "rules": [("bi-check2-circle", "<b>V ceni:</b> posteljnina, brisače, elektrika, plin."),
@@ -241,8 +242,8 @@ TEXT = {
              ("bi-moisture", "Washing machine"), ("bi-cup-straw", "Dishwasher"), ("bi-sun", "Two sea-view balconies")],
     "pr_eyebrow": "Prices", "pr_h2": "Prices and terms", "pr_lead": "Prices are for the whole apartment per night, regardless of the number of guests.",
     "seasons": [("July and August", "high season, minimum 3 nights", PRICES["high"]),
-                ("June and September", "minimum 2 nights", PRICES["mid"]),
-                ("October–May", "minimum 2 nights", PRICES["low"])],
+                ("May, June and September", "minimum 2 nights", PRICES["mid"]),
+                ("October–April", "minimum 2 nights", PRICES["low"])],
     "per_night": "/ night",
     "rules_h3": "Good to know",
     "rules": [("bi-check2-circle", "<b>Included:</b> bed linen, towels, electricity, gas."),
@@ -305,8 +306,8 @@ TEXT = {
              ("bi-moisture", "Waschmaschine"), ("bi-cup-straw", "Geschirrspüler"), ("bi-sun", "Zwei Balkone mit Meerblick")],
     "pr_eyebrow": "Preise", "pr_h2": "Preise und Bedingungen", "pr_lead": "Die Preise gelten für die ganze Wohnung pro Nacht, unabhängig von der Personenzahl.",
     "seasons": [("Juli und August", "Hauptsaison, mindestens 3 Nächte", PRICES["high"]),
-                ("Juni und September", "mindestens 2 Nächte", PRICES["mid"]),
-                ("Oktober–Mai", "mindestens 2 Nächte", PRICES["low"])],
+                ("Mai, Juni und September", "mindestens 2 Nächte", PRICES["mid"]),
+                ("Oktober–April", "mindestens 2 Nächte", PRICES["low"])],
     "per_night": "/ Nacht",
     "rules_h3": "Gut zu wissen",
     "rules": [("bi-check2-circle", "<b>Inklusive:</b> Bettwäsche, Handtücher, Strom, Gas."),
@@ -369,8 +370,8 @@ TEXT = {
              ("bi-moisture", "Lavatrice"), ("bi-cup-straw", "Lavastoviglie"), ("bi-sun", "Due balconi con vista mare")],
     "pr_eyebrow": "Prezzi", "pr_h2": "Prezzi e condizioni", "pr_lead": "I prezzi si intendono per l'intero appartamento a notte, indipendentemente dal numero di ospiti.",
     "seasons": [("Luglio e agosto", "alta stagione, minimo 3 notti", PRICES["high"]),
-                ("Giugno e settembre", "minimo 2 notti", PRICES["mid"]),
-                ("Ottobre–maggio", "minimo 2 notti", PRICES["low"])],
+                ("Maggio, giugno e settembre", "minimo 2 notti", PRICES["mid"]),
+                ("Ottobre–aprile", "minimo 2 notti", PRICES["low"])],
     "per_night": "/ notte",
     "rules_h3": "Buono a sapersi",
     "rules": [("bi-check2-circle", "<b>Incluso:</b> biancheria, asciugamani, elettricità, gas."),

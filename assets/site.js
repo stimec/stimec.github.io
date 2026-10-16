@@ -101,11 +101,11 @@
   });
 
   /* ---------- Price estimate ---------- */
-  var P = S.prices || { high: 140, mid: 115, low: 90, cleaning: 40, taxAdult: 3.10, taxChild: 1.55 };
+  var P = S.prices || { high: 150, mid: 120, low: 95, cleaning: 40, taxAdult: 3.10, taxChild: 1.55 };
   function nightPrice(d) {
     var m = d.getMonth() + 1;
     if (m === 7 || m === 8) return P.high;
-    if (m === 6 || m === 9) return P.mid;
+    if (m === 5 || m === 6 || m === 9) return P.mid;
     return P.low;
   }
   function eur(n) { return n.toLocaleString(S.numLocale || 'sl-SI', { style: 'currency', currency: 'EUR', minimumFractionDigits: n % 1 ? 2 : 0 }); }
