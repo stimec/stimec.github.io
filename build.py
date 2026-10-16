@@ -2,8 +2,9 @@
 """
 build.py - generates the static pages of www.stimec.eu from one template.
 
-Version: 1.8.0
+Version: 1.9.0
 Changelog:
+  1.9.0 (2026-10-16) Added surroundings cards (cyclists, sea, day trips, airports) to location section.
   1.8.0 (2026-10-16) Prices 150/120/95; May moved to mid season.
   1.7.0 (2026-10-15) Minimum stay 2 nights outside July/August (3 in July/August).
   1.6.0 (2026-10-15) SEO/accessibility pass: shorter titles and descriptions,
@@ -204,6 +205,8 @@ TEXT = {
     "loc_eyebrow": "Lokacija", "loc_h2": "Jagodje, Izola",
     "loc_lead": "Jagodje je mirno stanovanjsko naselje na robu Izole. Do morja in trgovine pridete peš, do starega mestnega jedra je kratka vožnja ali sprehod.",
     "dist": [("Plaža", "700 m"), ("Trgovina", "250 m"), ("Staro mestno jedro Izole", "1,5 km")],
+    "area_h": 'Okolica',
+    "area": [('bi-bicycle', 'Za kolesarje', 'Po nekdanji železniški trasi Parenzana, ki povezuje Trst, slovensko in hrvaško Istro, se pelje skozi Izolo. Poleg tega so v zaledju Istre odlične cestne in gorske ture z lepimi razgledi.'), ('bi-water', 'Morje in narava', 'Kopanje, sprehodi ob obali in naravni park Strunjan s klifi. Istra je znana tudi po vinu, oljčnem olju in dobri hrani.'), ('bi-signpost-split', 'Izleti', 'Piran, Portorož in Koper so oddaljeni le nekaj kilometrov, Trst je približno 40 km stran. Primerno za dnevne izlete z avtom ali kolesom.'), ('bi-airplane', 'Letališča', 'Trst (Ronchi dei Legionari) okoli 70 km, Ljubljana okoli 125 km, Benetke (Marco Polo) okoli 190 km.')],
     "directions": "Navodila za pot",
     "ct_eyebrow": "Kontakt", "ct_h2": "Pišite ali pokličite",
     "ct_lead": "Vprašanja pred rezervacijo? Najhitreje nas dosežete na WhatsApp.",
@@ -268,6 +271,8 @@ TEXT = {
     "loc_eyebrow": "Location", "loc_h2": "Jagodje, Izola",
     "loc_lead": "Jagodje is a quiet residential area on the edge of Izola. The sea and the shop are within walking distance, and the old town is a short drive or a longer walk away.",
     "dist": [("Beach", "700 m"), ("Shop", "250 m"), ("Izola old town", "1.5 km")],
+    "area_h": 'The surroundings',
+    "area": [('bi-bicycle', 'For cyclists', 'The Parenzana, the former railway line linking Trieste, Slovenian and Croatian Istria, runs through Izola. The hills behind the coast also offer fine road and mountain bike routes with great views.'), ('bi-water', 'Sea and nature', 'Swimming, walks along the coast and the Strunjan nature park with its cliffs. Istria is also known for its wine, olive oil and good food.'), ('bi-signpost-split', 'Day trips', 'Piran, Portorož and Koper are only a few kilometres away, Trieste is about 40 km. Easy day trips by car or bike.'), ('bi-airplane', 'Airports', 'Trieste (Ronchi dei Legionari) about 70 km, Ljubljana about 125 km, Venice (Marco Polo) about 190 km.')],
     "directions": "Get directions",
     "ct_eyebrow": "Contact", "ct_h2": "Message or call us",
     "ct_lead": "Questions before you book? WhatsApp is the fastest way to reach us.",
@@ -332,6 +337,8 @@ TEXT = {
     "loc_eyebrow": "Lage", "loc_h2": "Jagodje, Izola",
     "loc_lead": "Jagodje ist ein ruhiges Wohnviertel am Rand von Izola. Meer und Supermarkt erreichen Sie zu Fuß, die Altstadt mit einer kurzen Fahrt oder einem längeren Spaziergang.",
     "dist": [("Strand", "700 m"), ("Supermarkt", "250 m"), ("Altstadt Izola", "1,5 km")],
+    "area_h": 'Die Umgebung',
+    "area": [('bi-bicycle', 'Für Radfahrer', 'Die Parenzana, die ehemalige Bahntrasse zwischen Triest sowie dem slowenischen und kroatischen Istrien, führt durch Izola. Im Hinterland der Küste gibt es zudem schöne Rennrad- und Mountainbike-Touren mit tollen Ausblicken.'), ('bi-water', 'Meer und Natur', 'Baden, Spaziergänge an der Küste und der Naturpark Strunjan mit seinen Klippen. Istrien ist außerdem für Wein, Olivenöl und gutes Essen bekannt.'), ('bi-signpost-split', 'Ausflüge', 'Piran, Portorož und Koper liegen nur wenige Kilometer entfernt, Triest etwa 40 km. Ideal für Tagesausflüge mit Auto oder Rad.'), ('bi-airplane', 'Flughäfen', 'Triest (Ronchi dei Legionari) ca. 70 km, Ljubljana ca. 125 km, Venedig (Marco Polo) ca. 190 km.')],
     "directions": "Route planen",
     "ct_eyebrow": "Kontakt", "ct_h2": "Schreiben Sie uns oder rufen Sie an",
     "ct_lead": "Fragen vor der Buchung? Am schnellsten erreichen Sie uns per WhatsApp.",
@@ -396,6 +403,8 @@ TEXT = {
     "loc_eyebrow": "Posizione", "loc_h2": "Jagodje, Isola",
     "loc_lead": "Jagodje è una zona residenziale tranquilla ai margini di Isola. Il mare e il supermercato si raggiungono a piedi, il centro storico con un breve tragitto in auto o una passeggiata.",
     "dist": [("Spiaggia", "700 m"), ("Supermercato", "250 m"), ("Centro storico di Isola", "1,5 km")],
+    "area_h": 'Dintorni',
+    "area": [('bi-bicycle', 'Per i ciclisti', "La Parenzana, l'ex ferrovia che collega Trieste e l'Istria slovena e croata, passa per Isola. Nell'entroterra ci sono anche bei percorsi per bici da strada e mountain bike con ottimi panorami."), ('bi-water', 'Mare e natura', "Bagni, passeggiate lungo la costa e il parco naturale di Strugnano con le sue scogliere. L'Istria è nota anche per vino, olio d'oliva e buona cucina."), ('bi-signpost-split', 'Gite in giornata', 'Pirano, Portorose e Capodistria sono a pochi chilometri, Trieste a circa 40 km. Ideali per gite in giornata in auto o in bici.'), ('bi-airplane', 'Aeroporti', 'Trieste (Ronchi dei Legionari) circa 70 km, Lubiana circa 125 km, Venezia (Marco Polo) circa 190 km.')],
     "directions": "Indicazioni stradali",
     "ct_eyebrow": "Contatti", "ct_h2": "Scrivici o chiamaci",
     "ct_lead": "Domande prima di prenotare? Il modo più rapido è WhatsApp.",
@@ -533,6 +542,7 @@ def body(lang, t):
         <div class="price-row"><div class="season">{s}{f'<small>{n}</small>' if n else ''}</div>
           <div class="amount">{p} €<small> {t['per_night']}</small></div></div>""" for s, n, p in t["seasons"])
     rules = "".join(f'<li><i class="bi {i}" aria-hidden="true"></i><span>{r}</span></li>' for i, r in t["rules"])
+    area = "".join(f'<div class="col-sm-6 col-lg-3"><div class="area-card h-100"><i class="bi {i}" aria-hidden="true"></i><h4>{a}</h4><p>{b}</p></div></div>' for i, a, b in t["area"])
     dist = "".join(f"<li><span>{a}</span><b>{b}</b></li>" for a, b in t["dist"])
     num = lambda id_, label, v, mx: f"""
             <div class="col-4 guest-col"><label class="form-label" for="{id_}">{label}</label>
@@ -665,6 +675,8 @@ def body(lang, t):
         <iframe src="{maps_embed}" title="{t['loc_h2']}" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
       </div></div>
     </div>
+    <h3 class="mt-5 mb-3">{t['area_h']}</h3>
+    <div class="row g-3">{area}</div>
   </div>
 </section>
 </main>
